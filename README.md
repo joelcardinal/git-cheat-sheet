@@ -6,10 +6,13 @@
 
 ## Getting Started
 
-Install Git: Windows ([msysgit](http://msysgit.github.io/)) Mac ( [osx-installer](http://sourceforge.net/projects/git-osx-installer/) | [older dmg](https://code.google.com/p/git-osx-installer/downloads/list)) Or Source ([instructions](http://git-scm.com/book/en/Getting-Started-Installing-Git))
-Create an account on the repository host (e.g. [bitbucket.org](bitbucket.org), [github.com](github.com)).
-Create your public key ([instructions](https://help.github.com/articles/generating-ssh-keys)).
-Provide remote host admin with public key (if working with team).
+1. Install Git: Windows ([msysgit](http://msysgit.github.io/)) Mac ( [osx-installer](http://sourceforge.net/projects/git-osx-installer/) | [older dmg](https://code.google.com/p/git-osx-installer/downloads/list)) Or Source ([instructions](http://git-scm.com/book/en/Getting-Started-Installing-Git))
+
+2. Create an account on the repository host (e.g. [bitbucket.org](bitbucket.org), [github.com](github.com)).
+
+3. Create your public key ([instructions](https://help.github.com/articles/generating-ssh-keys)).
+
+4. Add public key in your remote host environment, and if working with team, provide remote host admin with public key.
 
 ## Cheat Sheet
 
