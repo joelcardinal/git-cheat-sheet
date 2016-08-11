@@ -13,7 +13,8 @@ Provide remote host admin with public key (if working with team).
 
 ## Cheat Sheet
 
-**Creating new local branch (when one exists on server)**
+
+### Creating new local branch (when one exists on server)
 
 bring down everything from server, including all branches
 
@@ -44,7 +45,7 @@ Prevent showing branches that have already been deleted
 ```git remote prune origin```
 
 
-**Committing changes and pushing back to server**
+### Committing changes and pushing back to server
 
 commit all changes in working space
 
@@ -72,21 +73,21 @@ Above, 'demandware_pod' is the local name you are giving the remote repository d
 
 Notice above instead of 'origin' we use the new local repository name of 'demandware_pod', which is just a convention for this example it could be anything.
 
-**See history on server**
+### See history on server
 
 ```git fetch origin/seewhy_test```
 
 ```git log origin/seewhy_test```
 
-**Show the commits that are in your current branch, but not origin -- i.e., whether you're ahead of origin and by which commits.**
+### Show the commits that are in your current branch, but not origin -- i.e., whether you're ahead of origin and by which commits.
 
 ```git rev-list origin..HEAD```
 
-**Renaming a local branch.**
+### Renaming a local branch.
 
 ```git branch -m old_branch_name new_branch_name```
 
-**Stash: This allows you to store away changes that have not been committed. It also resets the head to the last commit, as if you never made those changes.**
+### Stash: This allows you to store away changes that have not been committed. It also resets the head to the last commit, as if you never made those changes.
 
 Here we are saving an uncommitted change and adding a message:
 
@@ -104,7 +105,7 @@ The stash will still be there after you apply it, to delete the stash:
 
 ```git stash drop stash@{0}```
 
-**File or Commit History:**
+### File or Commit History:
 
 Shows commits by line
 
@@ -118,7 +119,7 @@ Shows diff of commit
 
 ```git show commitHash```
 
-**Undo the last commit:**
+### Undo the last commit:
 
 Use soft if you want to undo the change, but keep your changes in the active workspace
 
@@ -128,7 +129,7 @@ Use hard if you want to undo the change and get rid of the changes in the active
 
 ```git reset --hard HEAD~1```
 
-**Move a commit to another branch:**
+### Move a commit to another branch:
 
 First you would checkout the branch you want to work with:
 
@@ -148,7 +149,7 @@ Then use the following statement where the serial number is pasted after cherry-
 
 Note: cherry-pick does not delete the commit from the original branch.
 
-**Undo a specific commit somewhere in the history:**
+### Undo a specific commit somewhere in the history:
 
 First look at the commits and find the commit you want to undo
 
@@ -158,11 +159,11 @@ Then copy the commit serial hash and use the following command, where the hash o
 
 ```git revert 103298764wek23089476iwei28934```
 
-**Note: this does not get rid of the commit you didn't want--it creates a new commit at the end of the branches history that performs the opposite action of that commit. THIS IS VERY IMPORTANT TO UNDERSTAND. If you ever revert your commit history to a period earlier than this "undo" commit, the "undo" won't be there. Also, if you perform this, commits that depended on the unwanted commit will also be undone.**
+### Note: this does not get rid of the commit you didn't want--it creates a new commit at the end of the branches history that performs the opposite action of that commit. THIS IS VERY IMPORTANT TO UNDERSTAND. If you ever revert your commit history to a period earlier than this "undo" commit, the "undo" won't be there. Also, if you perform this, commits that depended on the unwanted commit will also be undone.
 
 In some cases it may be best to just create a branch that starts at the commit prior to the unwanted commit, then cherry-pick over commits that happened later that you do want. There are always a few different ways to skin a cat in git.
 
-**Undo a merge:**
+### Undo a merge:
 
 Undoing a merge is similar to the above, but we need to provide git with more information.
 
@@ -172,7 +173,7 @@ In the example above, the long sha number is the sha number provided in the log 
 
 Additionally, after doing this you will not be able to merge back in any ancestors of this merge branch point
 
-**Tags: These allow you to define a certain period in the history, spanning all branches.**
+### Tags: These allow you to define a certain period in the history, spanning all branches.
 
 Lets create a tag with a simple name and message:
 
@@ -186,11 +187,11 @@ After you create it correctly... Now we need to push it:
 
 ```git push --tags```
 
-**You can even use git to find in what file and line a search query can be found.**
+### You can even use git to find in what file and line a search query can be found.
 
 ```git grep -n somethingtosearchfor```
 
-**Index / Staging**
+### Index / Staging
 
 Other than commits, you have two other states of your changes, staged and un-staged. This wiki mostly discusses committing changes with:
 
@@ -218,7 +219,7 @@ The advantage of staging before committing is that it gives you more freedom to 
 
 …only the files you staged will be committed.
 
-**Merge Conflicts**
+### Merge Conflicts
 
 On occasion when you merge, you may encounter a conflict.
 
@@ -243,7 +244,8 @@ Now we can commit the merge changes:
 
 ```git commit -am "I fixed a merge conflict"```
 
-**Change Repo Name/Location**
+
+### Change Repo Name/Location
 
 On occasion the remote repo will change name or location.
 
@@ -253,7 +255,7 @@ To update your local pointer to the new remote location:
 
 ## Resources
 
-**Basics and Commands**
+### Basics and Commands
 
 [try.github.com](try.github.com)
 [BitBucket Docs](https://confluence.atlassian.com/display/BITBUCKET/Bitbucket+Documentation+Home)
@@ -271,24 +273,24 @@ To update your local pointer to the new remote location:
 [http://ariejan.net/2009/10/26/how-to-create-and-apply-a-patch-with-git](http://ariejan.net/2009/10/26/how-to-create-and-apply-a-patch-with-git)
 [http://ricardofilipe.com/projects/firstaidgit/#/](http://ricardofilipe.com/projects/firstaidgit/#/)
 
-**Branch Management**
+### Branch Management
 
 [http://git-scm.com/book/en/Git-Branching](http://git-scm.com/book/en/Git-Branching)
 [https://www.atlassian.com/git/workflows](https://www.atlassian.com/git/workflows)
 [http://nvie.com/posts/a-successful-git-branching-model/](http://nvie.com/posts/a-successful-git-branching-model/)
 [http://drewfradette.ca/a-simpler-successful-git-branching-model/](http://drewfradette.ca/a-simpler-successful-git-branching-model/)
 
-**Connect Git Commits to Jira**
+### Connect Git Commits to Jira
 
 [https://confluence.atlassian.com/display/BITBUCKET/Linking+Bitbucket+and+GitHub+accounts+to+JIRA](https://confluence.atlassian.com/display/BITBUCKET/Linking+Bitbucket+and+GitHub+accounts+to+JIRA)
 
-**Self hosting repository**
+### Self hosting repository
 
 [https://www.atlassian.com/software/stash](https://www.atlassian.com/software/stash)
 [http://www.gitorious.com/local_install/](http://www.gitorious.com/local_install/)
 [www.gitlab.com](www.gitlab.com)
 
-**Git Management Tools**
+### Git Management Tools
 SourceTree - If the terminal isn't your thing.</p>
 
 [https://www.atlassian.com/software/sourcetree/overview](https://www.atlassian.com/software/sourcetree/overview)
