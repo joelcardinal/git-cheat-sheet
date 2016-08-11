@@ -3,7 +3,6 @@
 - [Getting Started](#user-content-getting-started)
 - [Cheat Sheet](#user-content-cheat-sheet)
 - [Resources](#user-content-resources)
-- 
 
 ## Getting Started
 
