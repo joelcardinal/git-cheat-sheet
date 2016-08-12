@@ -260,6 +260,9 @@ To update your local pointer to the new remote location:
 
 ### Basics and Commands
 
+[https://github.com/joelcardinal/git-cheat-sheet](https://github.com/joelcardinal/git-cheat-sheet)
+[https://services.github.com/kit/downloads/github-git-cheat-sheet.pdf](https://services.github.com/kit/downloads/github-git-cheat-sheet.pdf)
+[http://ndpsoftware.com/git-cheatsheet.html](http://ndpsoftware.com/git-cheatsheet.html)
 [try.github.com](try.github.com)
 [BitBucket Docs](https://confluence.atlassian.com/display/BITBUCKET/Bitbucket+Documentation+Home)
 [GitHub Docs](https://help.github.com/)
