@@ -5,6 +5,7 @@ The intention of this document is to show git terminal commands that are used to
 This is my personal curated list of commands I find my self frequently using and use it as a quick reference, it does not cover all commands.  For the sake of brevity, I describe what the command does in very simple terms which may be an over simplification of what git actually does.  I provide this as a start to introduce you to concepts but highly encourage you to take a deep dive into learning git, resource provided at bottom.
 
 - [Getting Started](#user-content-getting-started)
+- [Understanding git](#user-content-understanding-git)
 - [Cheat Sheet](#user-content-cheat-sheet)
 - [Resources](#user-content-resources)
 
@@ -30,6 +31,241 @@ The best thing to do on a Mac is create a partition that uses format case-sensit
 
 http://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git
 http://stackoverflow.com/questions/8904327/case-sensitivity-in-git
+
+## Understanding git
+
+
+
+### Git Demystified
+
+There were a few things that made it hard for me to conceptually understand git when I first started using git:
+
+1. What is a commit really?
+2. What is this stuff about staging and remote?
+
+We'll cover commits in a separate section below, if you've never used version control, it might help read that section first, but it's imperative you understand how git orchestrates file changes -- even if you only have a vague idea of what a commit or branch means.
+
+I'm going to use an oversimplification to describe the 4 "pillars" of git:
+
+Workspace
+Consider the workspace the actual files you edit, and when you modify them this change is said to be a change in your workspace.
+
+Index
+When you stage a commit you are telling git that you intend on committing the change and making it permanent, it's technically not a separate physical version of the file.
+
+Local Repository
+After you commit a staged change it is permanently recorded in your local repository.
+
+Remote Repository
+The remote repository is the git history in your remote git host, typically in a service like GitHub, Bitbucket.  Technically the remote repository is no different than your local repository except for the commit and branch history -- which are not in sync.   Because they don't stay in sync, that's why you have to push up a branch.  And when you push up a branch to remote, it is really pushing up the commit history from your local repository.
+
+There are some good answers and visuals found here: https://goo.gl/rtXYA2
+
+Okay, so the first two should sorta make sense, the workspace is considered your files and any un-staged changes.  The index is essentially the staged changes, stuff that is intended to be committed.
+
+It's important to clarify the latter two because it's the whole crux behind git's ability to allow people to collaborate, but it can also be the most confusing part.
+
+For this example let's imagine we clone a remote repo, which means we pull down all existing history typically from an external server hosted by a service (e.g. GitHub, BitBucket).  For the sake of simplicity let's assume that the repo only has one branch, the default, "master".  So now we have a copy of all the files and history.
+
+The files you'll see on your hard drive, the history is tucked away in the bowels of the hidden .git directory within the main parent folder that was created when we cloned the remote repo.
+
+When we execute a terminal command (```git branch -a```) to show the local and remote branches it will state:
+
+```
+*master
+remotes/origin/master
+```
+
+What you are seeing in the first line is a reference to the master branch in your local repository and on the second line a reference to the master branch in the repo.
+
+Since we just cloned this, for the moment our local master and remote master have the same commit history.
+
+Hang onto your hat, this is where it gets weird...
+
+If someone else pushes up a commit to the remote master branch on GitHub, will my reference to the remote master have that commit information?
+
+If you answered "yes", you are wrong.
+
+Our local master and our reference to remote master still have the same commit history.
+
+Notice how I explicitly state that it's a "reference" to the remote master?  There's no background process keeping our remote reference in sync.
+
+To bring our reference to remote up-to-date we actually have to perform a git command:
+
+```git fetch origin```
+
+Now if we were to run a command (```git log origin/master```) to see the history from our remote reference we would see that the new commit by another developer is there.
+
+Next question, after we fetched origin, does our local master branch have the new commit?
+
+If you answered "yes", you are wrong.
+
+If we performed a command (```git status```) to see our local master branches status it would say our master branch is 1 commit behind remote master branch.
+
+We have to issue another command to merge in the new commit into our local master branch.
+
+```git merge origin/master```
+
+Above means merge remote master branch into my local master branch.  The "origin/master" part is where we state the remote master branch, since we only have one local branch, which is master, it must be our current active branch.  When you merge git assumes you want to merge the provided branch into your current active branch.
+
+It's really important to keep this mental model of how git works in your mind because it will help you remember to keep your remote references up-to-date and merge in any changes from remote.
+
+I think conceptually it would help folks if we added a 5th "pillar" of git, right before "remote repository", which would be "reference to remote repository".
+
+
+### Commits
+
+Every commit has a unique SHA-1 (sometimes called serial, hash...etc.), example: 7635353d1b86ef164d80501559a0189f9216a92c
+Any change to a commit changes the SHA-1
+Any new SHA-1 is something new despite same content
+
+A branch is just a pointer to a commit that is the branch head.  In the following we'll look at how git does it's magic while skipping the actual commands, let's first get a feel for commits and branches.
+
+Here is master branch with three commits:
+
+```
+0-0-0
+
+```
+
+Let's number them so we can better understand:
+
+```
+1A-2A-3A
+
+```
+
+Here is branch my-new-branch, which branched off master, and has two unique commits:
+
+```
+1A-2A-3A
+       \
+	    1B-2B
+```
+
+Now if we merge my-new-branch into master git will by default use the "fast-forward" where will just move the commit pointer:
+
+```
+1A-2A-3A-1B-2B
+
+```
+
+However, if you want to maintain a history of the branching you can pass argument --no-ff to force git to make a new merge commit, 4A:
+
+```
+1A-2A-3A------4A
+       \     /
+	    1B-2B
+```
+	  
+Let's go back to our previous state where master has three commits:
+
+```
+1A-2A-3A
+
+```
+
+Okay and we'll branch off again, my-new-branch, and make two commits:
+
+```
+1A-2A-3A
+       \
+	    1B-2B
+```		
+		
+And now someone has added two commits to master:
+
+```
+1A-2A-3A-4A-5A
+       \
+	    1B-2B
+```
+
+If we merge my-new-branch into master, git will create a new merge commit:
+
+```
+1A-2A-3A-4A-5A-6A
+       \      /
+	    1B-2B
+```
+
+Okay, let's again go back to a previous state where we branch off master, make two commits, and master has two additional commits:
+
+```
+1A-2A-3A-4A-5A
+       \
+	    1B-2B
+```
+
+I'm going to add commit SHA-1 info to help illustrate what we are about to do:
+
+```
+1A (sdf786a) - 2A (h98f7ui) - 3A (dfgd78s) - 4A (hj987dw) - 5A (6bvn6v6)
+									       \
+										    1B (76b5vn6) - 2B (8k5c0b5)
+```
+		
+Now we'll use rebase to add commits from master to my-new-branch:
+http://onlywei.github.io/explain-git-with-d3/#rebase
+
+```
+1A (sdf786a) - 2A (h98f7ui) - 3A (dfgd78s) - 4A (hj987dw) - 5A (6bvn6v6) - 6A (986dfgp) - 7A (123n2z1)
+
+```
+
+Above notice that rebase is a "destructive" method -- we are changing history.
+Commits 1B and 2B are orphaned and new commits 6A and 7A are used on master.
+Don't confuse this with "fast-forward", where the pointer simply moves, with rebase you are changing history and creating new commits.
+
+Why WOULD you want to do this?  So that you keep a "clean" history, free of branching speghetti.
+
+Why WOULDN'T you want to do this?  If you do this incorrectly YOU WILL F-UP YOUR HISTORY AND EVERYONE ELSE'S!!!
+
+!!!NEVER PUSH UP COMMITS YOU INTEND TO REBASE!!!
+
+So let's looks at what you should never do, so that you can avoid it.
+We'll go back to the moment before we used rebase:
+
+```
+1A (sdf786a) - 2A (h98f7ui) - 3A (dfgd78s) - 4A (hj987dw) - 5A (6bvn6v6) <-- master
+									       \
+										    1B (76b5vn6) - 2B (8k5c0b5) <-- my-new-branch
+
+```
+											
+You DO NOT want to push up my-new-branch...
+
+```
+1A (sdf786a) - 2A (h98f7ui) - 3A (dfgd78s) 
+									       \
+										    1B (76b5vn6) - 2B (8k5c0b5) <-- my-new-branch
+
+```
+
+Have someone else work on it...
+
+```
+1A (sdf786a) - 2A (h98f7ui) - 3A (dfgd78s) 
+									       \
+										    1B (76b5vn6) - 2B (8k5c0b5) - 3B (234k345) <-- my-new-branch with commit 3B by someone else
+```
+
+...then you rebase your my-new-branch...
+
+```
+(before rebase)
+1A (sdf786a) - 2A (h98f7ui) - 3A (dfgd78s) - 4A (hj987dw) - 5A (6bvn6v6) <-- master
+									       \
+										    1B (76b5vn6) - 2B (8k5c0b5) <-- my-new-branch
+
+(after rebase)										
+1A (sdf786a) - 2A (h98f7ui) - 3A (dfgd78s) - 4A (hj987dw) - 5A (6bvn6v6) - 6A (986dfgp) - 7A (123n2z1)
+
+```
+
+...and you push up your rebased my-new-branch...
+
+...and when your teammate trys to pull or merge in your change git will bork.
 
 
 ## Cheat Sheet
