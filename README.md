@@ -492,28 +492,49 @@ The advantage of staging before committing is that it gives you more freedom to 
 
 ### Merge Conflicts
 
-On occasion when you merge, you may encounter a conflict.
+This section assumes you've just issued command git merge and git states a merge conflict has occured.  Part of the messaging will state the files where a conflict was found, but if you need to see again which files have the conflict once again using status is your friend.
 
-To abort the merge as soon as the conflict is introduced:
+```git status```
+
+You have two choices, you can abort the merge which takes your branch back to the state before you issued the merge command, or you can resolve the conflicts.  Let's look at both options, here is the command to abort the merge.
 
 ```git merge --abort```
 
-To continue with a merge:
+Now we'll explore resolving the conflict.  Just like other versioning methods, git will wrap the problem lines of code in each file it finds conflict.  It will look something like this in the code file when you open in and editor.
 
-```git mergetool```
+```
+<<<<<<< HEAD
+var test = 'Hello World!';
+=======
+var test = 'Hello Cruel World?';
+>>>>>>> origin/dev
+```
 
-The git mergetool will open a gui where you can resolve your merge conflict. The gui will depend on what you have installed. For developers on Mac with Apple development tools installed it is likely to be opendiff/FileMerge. The following gui description assumes you are using FileMerge. The top two panes are your files: remote, and local. You can verify which is which by looking at the file name at top. The bottom pane allows you to manually make changes. You can use the gui by clicking the conflict error arrows and selecting which version to use. You can change the arrows direction by using the drop-down menu in the bottom right.
-When you are done change the arrows or making manual edits, save the change (control + S). A window will appear as to what format to save the change as, it doesn't matter which you select. This creates a file of the merge which needs to be deleted.
+Let's assume you were trying to merge remote branch dev into your local issue branch 19872_Fix-Header-Nav.  The top "<<<<<<< HEAD" section represents the code lines from 19872_Fix-Header-Nav, and the latter ">>>>>>> origin/dev" section is what it found on the remote dev branch that conflicts.
 
-We can use terminal commands to delete these files. They will have a unique extension, so we can use a find and remove by extension:
+IMPORTANT: Sometimes the wrapping conflict "<<<<<<<" identifiers are hard to spot, in the wrong section, and there may be mutiple sections that need fixing, review the entire document carefully.
 
-Find all files in current directory with the extension “this” and delete them.
+You'll need to manually remove all unnecessary code and the conflict "<<<<<<<" identifiers.  If our intention is to keep the work we did in 19872_Fix-Header-Nav and discard the code from the dev branch the correction would look like this.
 
-```find . "*.this" | rm```
+```
+var test = 'Hello World!';
+```
 
-Now we can commit the merge changes:
+After fixing all conflicts in all files be sure to save the files.  Now that the files have been corrected let's double-check we corrected them all.
 
-```git commit -am "I fixed a merge conflict"```
+```git status```
+
+All the files you corrected should now be in the modified status, there should be no files with conflict, if there is, resolve them.
+
+You'll notice git says that the it found Unmerged paths, you haven't yet resolved the merge conflict.  All this means is that you need to stage and commit these changes before git will see this merge conflict as resolved.
+
+```
+git add -A
+git status
+git commit -m "19872 Resolved merging in dev into 19872_Fix-Header-Nav"
+```
+
+Above in the first line we added all modified files, on the second we verified only the files we wanted staged are there, and the last we commit the fixes.
 
 
 ### Find bug
