@@ -43,17 +43,17 @@ Don't use destructive commands like rebase and reset if you can help it.  If you
 
 Here are a few things that will help you stay out of trouble:
 
-Don't use rebase with commits that exist on remote
-Don't use reset that affect commits that exist on remote
-Know what branch you are on (```git status```)
-Know if you have uncommitted work on current branch (```git status```)
-When you want to merge:
- - Make sure your reference to remote is up-to-date (```git status && git checkout master && git fetch origin && git fetch --prune```)
- - Your active branch needs to be the branch that you intend to receive the commits from some other branch.
- - Make sure you use the correct branch names
- - If you are merging in a remote branch make sure you reference it with origin (```git merge origin/REMOTE-BRANCH-NAME```)
-Double-check above
-Triple-check above
+* Don't use rebase with commits that exist on remote
+* Don't use reset that affect commits that exist on remote
+* Know what branch you are on (```git status```)
+* Know if you have uncommitted work on current branch (```git status```)
+* When you want to merge:
+ * Make sure your reference to remote is up-to-date (```git status && git checkout master && git fetch origin && git fetch --prune```)
+ * Your active branch needs to be the branch that you intend to receive the commits from some other branch.
+ * Make sure you use the correct branch names
+ * If you are merging in a remote branch make sure you reference it with origin (```git merge origin/REMOTE-BRANCH-NAME```)
+* Double-check above
+* Triple-check above
 
 
 ### Start using git
