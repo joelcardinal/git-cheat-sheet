@@ -60,37 +60,51 @@ Triple-check above
 
 Initialize git in a directory not currently using git.
 This creates a .git directory and starts listening for changes.
+
 ```git init```
 
 To remove git from a project you just need to remove the git folder.
+
 ```rm -rf .git/```
 
 To be able to push up to a remote repository, first create the new repo in your remote host environment (e.g. github, bitbucket).
 Once provided a repo URL, run the following command in your local git repo.
+
 ```git remote add origin GIT-LOCATION-PROVIDED-BY-REMOTE-HOST```
 
 Then push the repo up to remote
+
 ```git push -u origin master```
 
 You can check that the remote repo was tied to the local repo correctly by running the following command
+
 ```git remote -v```
 
 If a repo already exists on a remote source and you want to copy it locally run
+
 ```git clone GIT-LOCATION-PROVIDED-BY-REMOTE-HOST```
+
+If for some reason the remote location changes you can point your repo somewhere else
+
+```git remote set-url origin GIT-LOCATION-PROVIDED-BY-REMOTE-HOST```
 
 
 ### Making a commit
 
 Check which branch you are on and if there are any modified files.  This command will become your best friend, if you use it between issuing other git commands you will keep yourself out of trouble because you will see exactly what happens to files after each command.
+
 ```git status```
 
 Stage a single file for commit
+
 ```git add FILE-PATH-HERE```
 
 Stage ALL modified files for commit
+
 ```git add -A```
 
 Commit staged changes and add a short message to the commit
+
 ```git commit -m "Quick message of what commit is about"```
 
 Above we used the -m option which allows us to add a short commit description inline.  If we left off the -m option git would open your default terminal editor where it would expect you to write your commit message and save the message.  There is a global git config you can use to set your preferred editor.
@@ -99,12 +113,15 @@ Above we used the -m option which allows us to add a short commit description in
 ### Create and Switch Branch
 
 Create new branch based off current branch, but don't switch to it
+
 ```git branch BRANCH-NAME```
 
 Create new branch based off current branch and switch to it
+
 ```git checkout -b BRANCH-NAME```
 
 IMPORTANT:  When you want to make a local copy of a remote branch do the following:
+
 
 ```git checkout -b BRANCH-NAME origin/BRANCH-NAME```
 
@@ -115,15 +132,18 @@ If we had not included the ```origin/BRANCH-NAME```, then our local branch BRANC
 Additionally, using ```origin/BRANCH-NAME``` tells git what remote branch to track, so you can use the command ```git pull``` with confidence that it will merge in the correct remote branch.  See the discussion on merging in this document for more information.
 
 Switch to last used branch (good way to toggle between two branches)
+
 ```git checkout -```
 
 Essentially "git checkout all" when you have modified files and want to discard all changes, after this command execute git status to make sure it had the affect you intended.
+
 ```git checkout -- .```
 
 
 ### List branches
 
 Show list of local and remote branches
+
 ```git branch -a```
 
 
@@ -494,15 +514,6 @@ Find all files in current directory with the extension “this” and delete the
 Now we can commit the merge changes:
 
 ```git commit -am "I fixed a merge conflict"```
-
-
-### Change Repo Name/Location
-
-On occasion the remote repo will change name or location.
-
-To update your local pointer to the new remote location:
-
-```git remote set-url origin [updated link url git@........git]```
 
 
 ### Find bug
