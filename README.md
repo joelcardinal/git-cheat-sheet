@@ -664,13 +664,45 @@ In some cases it may be best to just create a branch that starts at the commit p
 
 ### Undo a merge:
 
-Undoing a merge is similar to the above, but we need to provide git with more information.
+If you merged a branch in but haven't yet pushed it up to remote, and don't have additional commits that you added after the merge:
+	
+```git reset --merge ORIG_HEAD```
+	
+Above, ```ORIG_HEAD``` is a literal reference that will point to the original commit from before the merge, it is not a stand-in for a branch name.
 
-```git revert 803298764wek23089476iwei28934 -m 1```
+(the --merge option has nothing to do with the merge, it's just like git reset --hard ORIG_HEAD but safer since it doesn't touch uncommitted changes)
 
-In the example above, the long sha number is the sha number provided in the log when you merged. The 1 stands for the first commit in the branch you merged in, a 2 would stand for the second commit made in the branch you merged in. In this example, if you had more than one commit, you would not be un-committing the entire merge, just that particular commit in the branch you merged in. Understandably, this method is only practical if you merged in a branch which had few commits.
+If you merged a branch in but haven't yet pushed it up to remote, and unfortunately created additional commits that you added after the merge inspect the history:
 
-Additionally, after doing this you will not be able to merge back in any ancestors of this merge branch point
+```git reflog```
+
+Above will print something like this:
+
+```
+23gg032 HEAD@{0}: commit: Fixed js
+fbb0c0f HEAD@{1}: commit (merge): Merge branch 'master' into my-branch
+43b6032 HEAD@{2}: checkout: moving from master to my-branch
+```
+
+Given the above, let's assume that you don't mind losing the work in commit 23gg032, and you don't want the merge in your branch, simply tell git to go back in time:
+
+```git reset --hard 43b6032```
+
+If you didn't want to lose the work in 23gg032 and those changes were not dependant on anything in the merge, you could probably create a new branch based off this borked one, let's call this new one Borky2 and let's call the original borked branch Borky1.  Now that you have a copy, go back and checkout Borky1, execute ```git reflog``` as shown above and reset to a commit before the merge.  Now cherry-pick 23gg032 into this Borky1 branch.  Then you can delete Borky2 branch.  Theoretically that should work but I haven't tried it.
+
+Things get more complicated if you pushed up a branch that had a merge you didn't want.
+
+Generally you want to do this:
+
+http://stackoverflow.com/questions/7099833/how-to-revert-a-merge-commit-thats-already-pushed-to-remote-branch#answer-31223198
+
+But first read this article to understand it better and the consequences:
+
+http://www.christianengvall.se/undo-pushed-merge-git/
+
+Another option which may not be practical:
+
+http://stackoverflow.com/questions/7099833/how-to-revert-a-merge-commit-thats-already-pushed-to-remote-branch#answer-37819457
 
 
 ### Add Tag
