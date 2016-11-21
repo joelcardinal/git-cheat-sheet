@@ -54,16 +54,20 @@ We'll cover commits in a separate section below, if you've never used version co
 
 I'm going to use an oversimplification to describe the 4 "pillars" of git:
 
-Workspace
+**Workspace**
+
 Consider the workspace the actual files you edit, and when you modify them this change is said to be a change in your workspace.
 
-Index
+**Index**
+
 When you stage a commit you are telling git that you intend on committing the change and making it permanent, it's technically not a separate physical version of the file.
 
-Local Repository
+**Local Repository**
+
 After you commit a staged change it is permanently recorded in your local repository.
 
-Remote Repository
+**Remote Repository**
+
 The remote repository is the git history in your remote git host, typically in a service like GitHub, Bitbucket.  Technically the remote repository is no different than your local repository except for the commit and branch history -- which are not in sync.   Because they don't stay in sync, that's why you have to push up a branch.  And when you push up a branch to remote, it is really pushing up the commit history from your local repository.
 
 There are some good answers and visuals found here: https://goo.gl/rtXYA2
