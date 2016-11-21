@@ -707,36 +707,6 @@ Show tags
 ```git grep -n somethingtosearchfor```
 
 
-### Index / Staging
-
-Other than commits, you have two other states of your changes, staged and un-staged. This wiki mostly discusses committing changes with:
-
-```git commit -a```
-
-The above actually commits BOTH staged and un-staged changes. So lets go through a scenario. You are in Studio or an editor of your choice. You make a change to a file and then you save the file in the editor.
-Now you have an un-staged commit. Let's now stage the commit:
-
-```git stage file_name```
-
-You could also use the command below, however doing so also adds any untracked files into the git history:
-
-```git add file_name```
-
-If you stage something and then want to un-stage it on a certain file, run:
-
-```git reset HEAD file_name```
-
-To un-stage all files use:
-
-```git reset HEAD```
-
-The advantage of staging before committing is that it gives you more freedom to manage what gets committed and when. Note, staging is not like creating a commit, if you make several changes and stage each change, their will not be a record for each staging point. If you now run…:
-
-```git commit```
-
-…only the files you staged will be committed.
-
-
 ### Merge Conflicts
 
 This section assumes you've just issued command git merge and git states a merge conflict has occured.  Part of the messaging will state the files where a conflict was found, but if you need to see again which files have the conflict once again using status is your friend.
@@ -833,8 +803,8 @@ Let's say we have a master branch and an issue branch.  And let's say that the i
 git will open your shell editor with something like this:
 
 ```
-pick 218bdd8 added 8
-pick 9c63b7c added 9
+pick 218bdd8 fixed js prob
+pick 9c63b7c fixed css prob
 
 # Rebase a2fb79b..9c63b7c onto a2fb79b (2 command(s))
 #
@@ -861,14 +831,14 @@ Notice above "pick" is written before the hash, you need to replace "pick" with 
 I'll show a few examples.
 
 ```
-pick 218bdd8 added 8
-squash 9c63b7c added 9
+pick 218bdd8 fixed js prob
+squash 9c63b7c fixed css prob
 ```
 
 Above will replace these commits with one commit that has the message of both commits.
 
 ```
-r 218bdd8 added 8 and 9
+r 218bdd8 fixed js and css prob
 f 9c63b7c added 9
 
 ```
@@ -876,8 +846,8 @@ f 9c63b7c added 9
 Above will replace these commits with one commit that has the message of only the first commit which we've amended.
 
 ```
-e 218bdd8 added 8
-r 9c63b7c added 9 and it rocks
+e 218bdd8 fixed js prob
+r 9c63b7c fixed css prob and it rocks
 ```
 
 By replacing the command "pick" with the command "edit" (you can also use "e"), you can tell git rebase to stop after applying that commit,
