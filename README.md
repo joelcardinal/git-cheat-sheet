@@ -11,7 +11,14 @@ This is my personal curated list of commands I find my self frequently using and
 
 ## Getting Started
 
-1. Install Git: Windows ([msysgit](http://msysgit.github.io/)) Mac ( [osx-installer](http://sourceforge.net/projects/git-osx-installer/) | [older dmg](https://code.google.com/p/git-osx-installer/downloads/list)) Or Source ([instructions](http://git-scm.com/book/en/Getting-Started-Installing-Git))
+1. Install Git:
+
+ - Windows: ([msysgit](http://msysgit.github.io/))
+
+ - Mac:
+	- Use HomeBrew (`brew install git`, `brew upgrade git`)
+	- Use MacPorts (port install git)
+	- Source ([instructions](http://git-scm.com/book/en/Getting-Started-Installing-Git))
 
 2. Create an account on the repository host (e.g. [bitbucket.org](bitbucket.org), [github.com](github.com)).
 
