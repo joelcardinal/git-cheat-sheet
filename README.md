@@ -489,7 +489,7 @@ Show commits that were not merges
 
 ```git log --no-merges```
 
-Show commit diff betweenn branches
+Show commit diff between branches
 
 ```git log master..BRANCH-NAME```
 
@@ -557,7 +557,7 @@ After running above you can get better context for the changes by copying the co
 
 This is one of my favorite features of git, it allows you to store away changes that have not been committed. It also resets the head to the last commit, as if you never made those changes.
 
-This feature is great for those times when you have multiple solutions to a problem and you want to try both without committing.  It's also a great way to save work when your daily priorities change and you have modified files but donn't want to make a commit yet as you are not done, but need to switch to another branch to work on something else.
+This feature is great for those times when you have multiple solutions to a problem and you want to try both without committing.  It's also a great way to save work when your daily priorities change and you have modified files but don't want to make a commit yet as you are not done, but need to switch to another branch to work on something else.
 
 Here we are saving an uncommitted but staged changes and adding a message:
 
@@ -565,11 +565,11 @@ Here we are saving an uncommitted but staged changes and adding a message:
 
 NOTE: I suggest including the branch name that the changes were done in as a reminder of the branch you will typically intend to apply the stash to at a later time.
 
-Here we list our stashes:
+Here we list our stashes, notice that stash uses a numerical index it stores different stashes under:
 
 ```git stash list```
 
-Here we bring back and apply our stash. I believe you can edit the stash ID so that you apply the stash you want:
+Here we bring back and apply our stash. You'll need to use the correct stash index number so that you apply the stash you want, in this example it is 0:
 
 ```git stash apply stash@{0}```
 
