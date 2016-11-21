@@ -617,11 +617,11 @@ Shows diff of commit
 
 ### Undo the last commit:
 
-Use soft if you want to undo the change, but keep your changes in the active workspace
+Use soft if you want to undo all staged changes, but want to un-stage and keep those changes in the active workspace
 
 ```git reset --soft HEAD~1```
 
-Use hard if you want to undo the change and get rid of the changes in the active workspace
+Use hard if you want to un-stage all changes and get rid of the un-staged changes in the active workspace
 
 ```git reset --hard HEAD~1```
 
