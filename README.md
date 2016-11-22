@@ -279,6 +279,19 @@ Have someone else work on it...
 ...and when your teammate trys to pull or merge in your change git will bork.
 
 
+###HEAD###
+
+You'll see "HEAD" in documentation and commands.
+
+HEAD normally refers to the currently checked out branch (e.g. master), and each branch typically refers to the last commit on that branch.
+
+When you checkout a tag or specific commit that is not the tip, this is known as a "detached HEAD".
+
+https://git-scm.com/docs/git-checkout#_detached_head
+http://stackoverflow.com/questions/2304087/what-is-head-in-git
+
+
+
 ## Cheat Sheet
 
 
