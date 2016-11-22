@@ -291,6 +291,39 @@ https://git-scm.com/docs/git-checkout#_detached_head
 http://stackoverflow.com/questions/2304087/what-is-head-in-git
 
 
+### Make git ignore files ###
+
+Sometimes you may not want git to track a certain file, for example it may have sensitive information like a configuration file that holds passwords or api keys that you don't want to exposed.  The best way to manage which files or directories git should not track is by listing these files and directories in a file named ".gitignore".  This specifically named file has special significance to git.  Note that this file name starts with a period, typically these files are hidden from view by operating systems, you can view these hidden files in the terminal by using the command ```ls -a```.
+
+Add your list of files and directories line deliminated, and save it in the root directory of your repo.
+
+It is best to create this file before your first git commit in the repo, but you can add it or modify it at any time.  However anything committed to git will be permanent in git history, so this means that if you add an exclusion to the .gitignore it won't track it from that time on, but if you committed the file before it was in .gitignore those existing commits don't go away.
+
+For exmaple, let's say when you made your first commit you had a file called "config.json" and it was not listed in the .gitignore, the file config.json is now in permanent history.  If you then add "config.json" to your .gitignore file and commit the change, any further changes to the "config.json" will not be tracked, but it will still exist in your repo history, and remote and other devs will have the file in their repo too because of that first commit.
+
+Given the above, it is sometimes useful to commit a files structure, especially for JSON files, but then add it to your .gitignore so that you can populate the JSON file's values with your sensitive information and it will not get committed.
+
+At this point it should make sense that the .gitignore is handled like any other file, you create and commit the file, and it will get shared with others using your repo having the same affect on their files and directories.
+
+Below is an example of what the contents of a .gitignore might contain.  Note that "*" wildcards can be used which stand for any number of characters.  Directories don't require a trailing slash, below "logs" is a directory.
+
+```
+.DS_Store
+Thumbs.db
+config.json
+.idea
+*.sublime-workspace
+node_modules
+npm-debug.log
+.tern
+*.tern
+.tern *
+.settings
+*.settings
+logs
+```
+
+
 
 ## Cheat Sheet
 
