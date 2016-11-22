@@ -359,6 +359,8 @@ Stage a single file for commit
 
 ```git add FILE-PATH-HERE```
 
+NOTE: For any file change, even rename or delete, you need to "add" this change, which especially for a file or directory delete can seem counterintuitive.
+
 Stage ALL modified files for commit
 
 ```git add -A```
