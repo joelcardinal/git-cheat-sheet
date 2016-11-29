@@ -781,6 +781,14 @@ Show tags
 
 ```git tag```
 
+Show tags with the commit it is attached to
+
+```git show-ref --tags```
+
+You can follow up after the command above with the following to inspect the commit
+
+```git show COMMITHASH```
+
 
 ### You can even use git to find in what file and line a search query can be found.
 
