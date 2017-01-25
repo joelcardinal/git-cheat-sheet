@@ -456,6 +456,10 @@ To remove a remote branch (if you know what you are doing!)
 
 ```git push origin :the_remote_branch```
 
+If you try to delete a remote branch that is named the same as a tag, git will throw an error, you'll need to use the following method to delete the branch; supply a more complete path.
+
+```git push origin :refs/heads/the_remote_branch```
+
 Prevent showing branches that have already been deleted
 
 ```git fetch --prune```
