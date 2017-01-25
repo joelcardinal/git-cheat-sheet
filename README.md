@@ -761,6 +761,8 @@ http://stackoverflow.com/questions/7099833/how-to-revert-a-merge-commit-thats-al
 
 A tag just adds a name to the last commit, typically used to mark a point in history, like a release.
 
+IMPORTANT: do not name a tag the same as a branch, git gets confused when you use common commands as it can't readily distinguish between branches and tags without you providing a full reference path.
+
 Add tag simple tag with no description
 
 ```git tag v1.0.0```
