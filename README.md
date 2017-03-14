@@ -652,6 +652,28 @@ stash ignored, untracked, and tracked files
 TIP: Applying your stash does not delete the stash.  If it's no longer needed after applying, delete it or you'll just be confused later and wonder if you applied it or not.
 
 
+### See What Branch Commit is in
+
+Only list (local) branches which contain the specified commit.
+
+```git branch --contains commitHash```
+
+Note: if the commit is on a remote tracking branch, add the -a option.
+
+```git branch -a --contains commitHash```
+
+Lists remote tracking branches as well, that is "local branches that have a direct relationship to a remote branch".
+
+```git branch -r --contains commitHash```
+
+Commands above only shows which branches contain that exact commit. If you want to know which branches contain an "equivalent" commit (i.e. which branches have cherry-picked that commit) use ```git cherry```.
+
+```git cherry -v```
+
+The commits marked with a plus sign are those not in the upstream branch, more: https://www.kernel.org/pub/software/scm/git/docs/git-cherry.html
+
+
+
 ### File or Commit History:
 
 Shows commits by line
