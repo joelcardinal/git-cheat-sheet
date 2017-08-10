@@ -673,6 +673,19 @@ Commands above only shows which branches contain that exact commit. If you want 
 The commits marked with a plus sign are those not in the upstream branch, more: https://www.kernel.org/pub/software/scm/git/docs/git-cherry.html
 
 
+### See if Branch is in another Branch
+
+Lists branches merged into master
+```git branch --merged master```
+
+Lists branches merged into HEAD (i.e. tip of current branch)
+```git branch --merged```
+
+Lists branches that have not been merged
+```git branch --no-merged``` 
+
+By default this applies to only the local branches. The -a flag will show both local and remote branches, and the -r flag shows only the remote branches.
+
 
 ### File or Commit History:
 
