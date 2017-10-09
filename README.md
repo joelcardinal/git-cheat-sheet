@@ -577,6 +577,15 @@ Diff current branch against remote branch
 ```git diff --raw HEAD...origin/[BRANCH-NAME]```
 
 
+### Show Merge Diff
+
+Inspect a merge commit using log or other command.  Note the two short commit hashes listed in the commit message.  Reverse the order of the two then run the following.  The two dots in between are required.
+
+```git diff HASH#2..HASH#1```
+
+https://stackoverflow.com/questions/5072693/how-to-git-show-a-merge-commit-with-combined-diff-output-even-when-every-chang
+
+
 ### See history on remote
 
 ```git log origin/seewhy_test```
