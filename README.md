@@ -553,6 +553,9 @@ Mash up filter
 
 ```git log -3 -i --author="Joel" README.md```
 
+Show files changed in given commit
+
+```git diff-tree --no-commit-id --name-only -r COMMITHASH```
 
 ### Show diff
 
@@ -575,6 +578,16 @@ Diff current branch against another branch
 Diff current branch against remote branch
 
 ```git diff --raw HEAD...origin/[BRANCH-NAME]```
+
+Below commit message diffs require messages formatted as "BUGNUMBER_Description-Here"
+
+Show partial commit message of diff between two branches
+
+```git log NEWERBRANCHNAME ^OLDERBRANCHNAME --oneline | grep _ | awk '{print $2}' | grep _ | sort -u```
+
+Show partial commit messages of diff between old hash and current branch HEAD
+
+```git log 2847d4644..HEAD  --oneline | grep _ | awk '{print $2}' | grep _ | sort -u```
 
 
 ### Show Merge Diff
