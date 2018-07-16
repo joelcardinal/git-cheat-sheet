@@ -587,7 +587,7 @@ Show partial commit message of diff between two branches
 
 Show partial commit messages of diff between old hash and current branch HEAD
 
-```git log 2847d4644..HEAD  --oneline | grep _ | awk '{print $2}' | grep _ | sort -u```
+```git log OLDCOMMITHASH..HEAD  --oneline | grep _ | awk '{print $2}' | grep _ | sort -u```
 
 
 ### Show Merge Diff
