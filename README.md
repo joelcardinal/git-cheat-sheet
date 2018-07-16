@@ -805,7 +805,7 @@ http://stackoverflow.com/questions/7099833/how-to-revert-a-merge-commit-thats-al
 
 A tag just adds a name to the last commit, typically used to mark a point in history, like a release.
 
-IMPORTANT: do not name a tag the same as a branch, git gets confused when you use common commands as it can't readily distinguish between branches and tags without you providing a full reference path.
+IMPORTANT: DO NOT name a tag the same as a branch, git gets confused when you use common commands as it can't readily distinguish between branches and tags without you providing a full reference path. If you accidently do this, see the deletion commands below.
 
 Add tag simple tag with no description
 
@@ -815,9 +815,13 @@ Create tag with message
 
 ```git tag -a v2.0.1 -m "This was a hotffix"```
 
-Oops, I mis-spelt hotfix, so let's delete it using the name as reference:
+Delete local tag using the name as reference:
 
 ```git tag -d v2.0.1```
+
+Delete remote tag using the name as reference:
+
+```git push origin :refs/tags/list```
 
 If you want a tag with a long message, like release info
 
