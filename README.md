@@ -1057,7 +1057,9 @@ SourceTree - If the terminal isn't your thing.</p>
 
 ### Git Archiving
 [Use git archive to zip files at current state](https://git-scm.com/docs/git-archive)
+
 [Use git bundle to transport the entire history as a single file](https://git-scm.com/docs/git-bundle)
 [Bundle examples](https://stackoverflow.com/questions/11879287/export-git-with-version-history)
 
+### SourceTree (...but you should really use the terminal :) )
 [https://www.atlassian.com/software/sourcetree/overview](https://www.atlassian.com/software/sourcetree/overview)
