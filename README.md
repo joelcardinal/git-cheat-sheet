@@ -323,7 +323,24 @@ npm-debug.log
 logs
 ```
 
+Use an exclimation as a NOT, to "un-ignore" specific files/directories
 
+```
+*.json
+!spec/*.json
+```
+
+https://stackoverflow.com/questions/4621072/git-ignore-all-files-of-a-certain-type-except-those-in-a-specific-subfolder
+
+If you want "empty" directories to exist in a git repo but never files in it, cd to the directory, then create a .gitignore with this in it:
+
+```
+*
+*/
+!.gitignore
+```
+
+https://stackoverflow.com/questions/4250063/how-to-gitignore-all-files-folder-in-a-folder-but-not-the-folder-itself#answer-5581995
 
 ## Cheat Sheet
 
@@ -723,6 +740,19 @@ Shows diff of commit
 
 ```git show commitHash```
 
+### Commits in one branch but not another
+
+```git log --no-merges oldbranch ^newbranch```
+
+https://stackoverflow.com/questions/1710894/using-git-show-all-commits-that-are-in-one-branch-but-not-the-others
+
+### Unstage all files and remove modified/untracked files
+
+```git reset --hard HEAD```
+
+To remove untracked files and directories
+
+```git clean -fd```
 
 ### Undo the last commit:
 
