@@ -850,6 +850,8 @@ A tag just adds a name to the last commit, typically used to mark a point in his
 
 IMPORTANT: DO NOT name a tag the same as a branch, git gets confused when you use common commands as it can't readily distinguish between branches and tags without you providing a full reference path. If you accidently do this, see the deletion commands below.
 
+NOTE: By default a tag is created at the current HEAD position, but you can pass a commit hash as the last argument on the commands below to put a tag on any commit in the history. 
+
 Add tag simple tag with no description
 
 ```git tag v1.0.0```
