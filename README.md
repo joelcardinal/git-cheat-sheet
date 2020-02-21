@@ -107,6 +107,22 @@ To bring our reference to remote up-to-date we actually have to perform a git co
 
 Now if we were to run a command (```git log origin/master```) to see the history from our remote reference we would see that the new commit by another developer is there.
 
+---
+
+**TIP:** If you are on git version 2.5 or higher you can use the following chained commands to quickly see all branches of which you are behind compared to origin, as fetch origin only shows changes from the last time you ran it; but you may not have merged in the changes yet.
+
+```git fetch origin && git for-each-ref --format="%(refname:short) %(push:track)" refs/heads | grep behind```
+
+Add this alias to your .bash_profile file, command is simply "behind":
+
+```alias behind='git fetch origin && git for-each-ref --format="%(refname:short) %(push:track)" refs/heads | grep behind'```
+
+And remember it won't take affect until you reopen the terminal or run this command to reset it:
+
+```source ~/.bash_profile```
+
+---
+
 Next question, after we fetched origin, does our local master branch have the new commit?
 
 If you answered "yes", you are wrong.
