@@ -690,19 +690,19 @@ In the above example ```git stash save "Partial work for issue X"``` you'll note
 
 stash only unstaged changes to tracked files
 
-```git stash --keep-index```
+```git stash save --keep-index```
 
 stash any changes to tracked files
 
-```git stash```
+```git stash save```
 
 stash untracked and tracked files
 
-```git stash --include-untracked```
+```git stash save --include-untracked```
 
 stash ignored, untracked, and tracked files
 
-```git stash --all```
+```git stash save --all```
 
 TIP: Applying your stash does not delete the stash.  If it's no longer needed after applying, delete it or you'll just be confused later and wonder if you applied it or not.
 
