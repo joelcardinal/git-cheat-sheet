@@ -892,9 +892,13 @@ Push tags to remote
 
 ```git push --tags```
 
-Show tags
+Show list of tags
 
 ```git tag```
+
+Show tags and up to 9 lines of tag comment
+
+```git tag -n9```
 
 Show tags with the commit it is attached to
 
