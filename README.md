@@ -1,4 +1,4 @@
-# Git Cheat Sheet
+# Git Cheat Sheets
 
 The intention of this document is to show git terminal commands that are used to accomplish very specific tasks.  This document doesn't show git workflows used with a development branching strategy, if you are looking for that see https://github.com/joelcardinal/git-recipes. 
 
