@@ -485,6 +485,12 @@ If you perform the above on a local branch who's commit history has not be merge
 
 ```git branch -D the_local_branch```
 
+This will delete all merged branches that you have locally except for master, developer or dev. If you have different names for your main and dev branches, you can change the grep regex accordingly.
+
+```git branch --no-color --merged | command grep -vE "^(\+|\*|\s*(master|develop|dev)\s*$)" | command xargs -n 1 git branch -d```
+
+(Don't forget to garbage collect old branches/detached commits afterward ```git fetch --all --prune```)
+
 To remove a remote branch (if you know what you are doing!)
 
 ```git push origin :the_remote_branch```
