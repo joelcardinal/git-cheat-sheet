@@ -592,6 +592,10 @@ Mash up filter
 
 ```git log -3 -i --author="Joel" README.md```
 
+Write to file commits since last year, no merges.  Note use of --no-pager which must come after git
+
+```git --no-pager log --no-merges --since="last year" --pretty=medium > /path/to/gitCommitsSinceLastYear.txt```
+
 Show files changed in given commit
 
 ```git diff-tree --no-commit-id --name-only -r COMMITHASH```
