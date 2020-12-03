@@ -870,11 +870,11 @@ Another option which may not be practical:
 http://stackoverflow.com/questions/7099833/how-to-revert-a-merge-commit-thats-already-pushed-to-remote-branch#answer-37819457
 
 
-### Add Tag
+### Git Tag
 
-A tag just adds a name to the last commit, typically used to mark a point in history, like a release.
+A tag just adds a name to a commit, typically used to mark a point in history, like a release.
 
-IMPORTANT: DO NOT name a tag the same as a branch, git gets confused when you use common commands as it can't readily distinguish between branches and tags without you providing a full reference path. If you accidently do this, see the deletion commands below.
+IMPORTANT: DO NOT name a tag the same as a branch, git gets confused when you use common commands as it can't readily distinguish between branches and tags without you providing a full reference path (e.g. :refs/tags/mytagname). If you accidently do this, see the deletion commands below.
 
 NOTE: By default a tag is created at the current HEAD position, but you can pass a commit hash as the last argument on the commands below to put a tag on any commit in the history. 
 
@@ -917,6 +917,34 @@ Show tags with the commit it is attached to
 You can follow up after the command above with the following to inspect the commit
 
 ```git show COMMITHASH```
+
+Delete remote tag
+
+```git push origin :refs/tags/2020-12-01_Fast```
+
+Delete local tag
+
+```git tag --delete 2020-12-01_Critical```
+
+Rename remote tag:
+
+1. Get commit it points at
+
+```git rev-parse <old tag name>```
+
+2. Delete local
+
+```git tag --delete <old tag name>```
+
+3. Delete remote
+
+```git push origin :refs/tags/<old tag name>```
+
+4. git tag -a <new tag name> -m "yourmessage" <commit hash>
+
+```Push up new tag```
+
+```git push --tags```
 
 
 ### You can even use git to find in what file and line a search query can be found.
