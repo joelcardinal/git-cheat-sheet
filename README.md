@@ -940,9 +940,11 @@ Rename remote tag:
 
 ```git push origin :refs/tags/<old tag name>```
 
-4. git tag -a <new tag name> -m "yourmessage" <commit hash>
+4. Create the new tag
 
-```Push up new tag```
+```git tag -a <new tag name> -m "yourmessage" <commit hash>```
+
+5. Push up new tag
 
 ```git push --tags```
 
