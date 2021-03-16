@@ -474,6 +474,10 @@ Show list of local and remote branches
 
 ```git branch -a```
 
+Show a list of branches that begin with string
+
+```git branch --list "abc*"```
+
 
 ### Delete branch
 
