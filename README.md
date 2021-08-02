@@ -358,6 +358,14 @@ If you want "empty" directories to exist in a git repo but never files in it, cd
 
 https://stackoverflow.com/questions/4250063/how-to-gitignore-all-files-folder-in-a-folder-but-not-the-folder-itself#answer-5581995
 
+### Make git ignore file permissions ###
+
+Sometimes when you move to a new computer you may find that git thinks all your files have been modified, this is because by default git also tracks file permissions.  It's typically not necessary to track permissions and you can ignore the changes by using the command below.
+
+```
+git config core.fileMode false
+```
+
 ## Cheat Sheet
 
 
