@@ -467,6 +467,10 @@ If we had not included the ```origin/BRANCH-NAME```, then our local branch BRANC
 
 Additionally, using ```origin/BRANCH-NAME``` tells git what remote branch to track, so you can use the command ```git pull``` with confidence that it will merge in the correct remote branch.  See the discussion on merging in this document for more information.
 
+If you forget to set the tracking branch do the following after you checkout the given branch:
+
+``` git branch --set-upstream-to origin/MyRemoteBranch ```
+
 Switch to last used branch (good way to toggle between two branches)
 
 ```git checkout -```
