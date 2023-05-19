@@ -580,9 +580,11 @@ Options are regex
 
 ```git log --author="Joel\|John"```
 
-Filter by message words
+Find commits that commit messages containing a string or evaluate for a regular expression
 
-```git log --grep="deleted"```
+```git log --all --grep getProducts```
+
+```git log -all --grep get\w*```
 
 Filter by code change where Math was edited
 
@@ -599,6 +601,10 @@ Show commits that were not merges
 Show commit diff between branches
 
 ```git log master..BRANCH-NAME```
+
+Find all branches that have a change to a specific file
+
+```git log --all -- path/to/file/filename```
 
 Show commits of specific files
 
