@@ -932,6 +932,10 @@ Show tags and up to 9 lines of tag comment
 
 ```git tag -n9```
 
+Show tag this is on specific commit (else nothing)
+
+```git tag --points-at COMMITHASH```
+
 Show tags with the commit it is attached to
 
 ```git show-ref --tags```
