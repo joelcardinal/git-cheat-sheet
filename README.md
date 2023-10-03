@@ -23,8 +23,14 @@ This is my personal curated list of commands I find my self frequently using and
 2. Create an account on the repository host (e.g. [bitbucket.org](bitbucket.org), [github.com](github.com)).
 
 3. Create your public key ([instructions](https://help.github.com/articles/generating-ssh-keys)).
+   - BitBucket Git RSA SSH Key creation troubleshooting:
+   - https://support.atlassian.com/bitbucket-cloud/docs/set-up-personal-ssh-keys-on-linux/
+   - https://confluence.atlassian.com/bbkb/the-authenticity-of-host-bitbucket-org-104-192-143-1-can-t-be-established-1168865389.html
+   - https://stackoverflow.com/questions/20840012/ssh-remote-host-identification-has-changed
+   - https://stackoverflow.com/questions/41374963/one-ssh-key-to-all-repositories-in-bitbucket
+   - https://superuser.com/questions/916917/bitbucket-git-ssh-key-error-bad-owner-or-permissions-on-home-centos-ssh-conf
 
-4. Add public key in your remote host environment, and if working with team, provide remote host admin with public key.
+5. Add public key in your remote host environment, and if working with team, provide remote host admin with public key.
 
 NOTE: There is an issue with capitalization with git on a Mac OS.  A Mac is typically setup with a drive format that is not case sensitive yet case preserving:
 
