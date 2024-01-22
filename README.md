@@ -372,6 +372,14 @@ Sometimes when you move to a new computer you may find that git thinks all your 
 git config core.fileMode false
 ```
 
+### Global .gitignore ###
+
+In your user root add a .gitignore with anything that might be specific to you that perhaps doesn't needed to be added to every repo's .gitignore.
+
+```
+git config --global core.excludesfile ~/.gitignore
+```
+
 ## Cheat Sheet
 
 
